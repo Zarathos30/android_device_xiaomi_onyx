@@ -350,6 +350,7 @@ PRODUCT_PACKAGES += \
     ApertureOverlayOnyx \
     CarrierConfigOverlayOnyx \
     CustomSettingsOverlayOnyx \
+    DeviceAsWebcamResTarget \
     SystemUIOverlayOnyx \
     TelephonyOverlayOnyx \
     FrameworkOverlayOnyx \
