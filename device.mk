@@ -545,8 +545,5 @@ $(call inherit-product-if-exists, packages/apps/NotGameTurbo/notgameturbo.mk)
 # Vendor
 $(call inherit-product, vendor/xiaomi/onyx/onyx-vendor.mk)
 
-# Axion common
-$(call inherit-product, device/axion/common/config/soc_map.mk)
-
 # Vendor MiuiCamera
 $(call inherit-product-if-exists, device/xiaomi/onyx-miuicamera/device.mk)
