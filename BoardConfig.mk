@@ -203,7 +203,7 @@ TARGET_COPY_OUT_VENDOR := vendor
 TARGET_COPY_OUT_VENDOR_DLKM := vendor_dlkm
 
 ifneq ($(WITH_GMS), true)
--include vendor/lineage/config/BoardConfigReservedSize.mk
+-include vendor/aicp/config/BoardConfigReservedSize.mk
 endif
 
 # Platform
