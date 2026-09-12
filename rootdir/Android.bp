@@ -135,3 +135,10 @@ prebuilt_etc {
     src: "etc/fstab.zram",
     vendor: true,
 }
+
+prebuilt_etc {
+    name: "init.sm8735.rc",
+    src: "etc/init.sm8735.rc",
+    sub_dir: "init",
+    vendor: true,
+}
