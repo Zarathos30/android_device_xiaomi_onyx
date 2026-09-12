@@ -236,7 +236,8 @@ PRODUCT_PACKAGES += \
     init.qcom.rc \
     init.qti.kernel.rc \
     init.recovery.qcom.rc \
-    init.target.rc
+    init.target.rc \
+    init.sm8735.rc
 
 PRODUCT_PACKAGES += \
     init.class_main.sh \
