@@ -34,7 +34,6 @@ boot_stats.ko
 tmecom-intf.ko
 qcom_va_minidump.ko
 qcom_dynamic_ramoops.ko
-hung_task_enh.ko
 memlat.ko
 bwmon.ko
 c1dcvs_scmi_v2.ko
@@ -42,7 +41,6 @@ cpufreq_stats_scmi_v2.ko
 cpufreq_stats_scmi_v3.ko
 dynpf_scmi.ko
 mpam.ko
-cpu_mpam.ko
 platform_mpam.ko
 mpam_msc.ko
 mpam_msc_slc.ko
