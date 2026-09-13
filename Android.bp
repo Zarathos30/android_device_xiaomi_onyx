@@ -34,3 +34,111 @@ mkdir {
     dir: "modem_firmware",
     vendor: true,
 }
+
+uwu_kernel {
+    name: "kernel",
+    kernel_dir: "kernel/xiaomi/sm8735",
+    kernel_arch: "arm64",
+    image_name: "Image",
+    clang_version: "clang-r563880c",
+    additional_flags: [
+        "TARGET_PRODUCT=$(PRODUCT_DEVICE)",
+    ],
+
+    config: {
+        defconfig: "gki_defconfig",
+        fragments: [
+            "vendor/sun_perf.config",
+            "vendor/onyx_perf.config",
+        ],
+    },
+
+    dtb: {
+        enabled: true,
+        qcom_merge: true,
+        target: "dtbs",
+        image_name: "dtb.img",
+    },
+
+    dtbo: {
+        enabled: true,
+        target: "dtbs",
+        image_name: "dtbo.img",
+        page_size: 4096,
+    },
+
+    modules: {
+        enabled: true,
+        external_module_root: "kernel/xiaomi/sm8735-modules",
+        external_modules: [
+            "qcom/opensource/mmrm-driver",
+            "qcom/opensource/mm-drivers/hw_fence",
+            "qcom/opensource/mm-drivers/msm_ext_display",
+            "qcom/opensource/mm-drivers/sync_fence",
+            "qcom/opensource/audio-kernel",
+            "qcom/opensource/securemsm-kernel",
+            "qcom/opensource/synx-kernel",
+            "qcom/opensource/camera-kernel",
+            "qcom/opensource/data-kernel/drivers/smem-mailbox",
+            "qcom/opensource/datarmnet-ext/mem",
+            "qcom/opensource/dataipa/drivers/platform/msm",
+            "qcom/opensource/datarmnet/core",
+            "qcom/opensource/datarmnet-ext/aps",
+            "qcom/opensource/datarmnet-ext/offload",
+            "qcom/opensource/datarmnet-ext/perf",
+            "qcom/opensource/datarmnet-ext/perf_tether",
+            "qcom/opensource/datarmnet-ext/sch",
+            "qcom/opensource/datarmnet-ext/shs",
+            "qcom/opensource/datarmnet-ext/wlan",
+            "qcom/opensource/display-drivers/msm",
+            "qcom/opensource/dsp-kernel",
+            "qcom/opensource/eva-kernel",
+            "qcom/opensource/graphics-kernel",
+            "qcom/opensource/spu-kernel",
+            "qcom/opensource/touch-drivers",
+            "qcom/opensource/video-driver",
+            "qcom/opensource/wlan/platform",
+            "qcom/opensource/wlan/qcacld-3.0",
+            "qcom/opensource/bt-kernel",
+            "nxp/opensource/driver",
+        ],
+        system_dlkm_module_install_list: [
+            "device/xiaomi/onyx/modules/modules.list.gki",
+            "device/xiaomi/onyx/modules/modules.list.kunit",
+        ],
+        system_dlkm_module_load_list: [
+            "device/xiaomi/onyx/modules/modules.list.gki",
+        ],
+        vendor_dlkm_module_install_list: [
+            "device/xiaomi/onyx/modules/modules.list.second_stage",
+            "device/xiaomi/onyx/modules/modules.list.vendor_dlkm",
+        ],
+        vendor_dlkm_module_load_list: [
+            "device/xiaomi/onyx/modules/modules.list.second_stage",
+            "device/xiaomi/onyx/modules/modules.list.vendor_dlkm",
+        ],
+        vendor_ramdisk_module_install_list: [
+            "kernel/xiaomi/sm8735/modules.list.msm.sun",
+            "device/xiaomi/onyx/modules/modules.list.first_stage",
+            "device/xiaomi/onyx/modules/modules.list.second_stage",
+        ],
+        vendor_ramdisk_module_load_list: [
+            "kernel/xiaomi/sm8735/modules.list.msm.sun",
+            "device/xiaomi/onyx/modules/modules.list.first_stage",
+        ],
+        recovery_module_install_list: [
+            "kernel/xiaomi/sm8735/modules.list.msm.sun",
+            "device/xiaomi/onyx/modules/modules.list.first_stage",
+            "device/xiaomi/onyx/modules/modules.list.second_stage",
+        ],
+        recovery_module_load_list: [
+            "kernel/xiaomi/sm8735/modules.list.msm.sun",
+            "device/xiaomi/onyx/modules/modules.list.first_stage",
+            "device/xiaomi/onyx/modules/modules.list.second_stage",
+        ],
+        vendor_dlkm_module_blocklist: "kernel/xiaomi/sm8735/modules.vendor_blocklist.msm.sun",
+        vendor_ramdisk_module_blocklist: "kernel/xiaomi/sm8735/modules.vendor_blocklist.msm.sun",
+        recovery_module_blocklist: "kernel/xiaomi/sm8735/modules.vendor_blocklist.msm.sun",
+        auto_collect_deps: true,
+    },
+}

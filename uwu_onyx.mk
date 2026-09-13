@@ -7,13 +7,13 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit some common Lineage stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit some common uwuAOSP stuff.
+$(call inherit-product, vendor/uwu/config/common.mk)
 
 # Inherit from onyx device
 $(call inherit-product, device/xiaomi/onyx/device.mk)
 
-PRODUCT_NAME := lineage_onyx
+PRODUCT_NAME := uwu_onyx
 PRODUCT_DEVICE := onyx
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_BRAND := POCO
@@ -29,3 +29,11 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     DeviceProduct=$(PRODUCT_SYSTEM_NAME)
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
+
+
+# Flags
+UWU_DEVICE_TYPE := phone
+UWU_SUPPORTS_TELEPHONY := true
+UWU_MAINTAINER := Zarathos30
+UWU_BUILDTYPE := RELEASE
+PRODUCT_NO_CAMERA:= true
