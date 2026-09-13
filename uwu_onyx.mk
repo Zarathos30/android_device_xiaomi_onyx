@@ -7,14 +7,21 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit some common PixelOS stuff.
-$(call inherit-product, vendor/custom/config/common_full_phone.mk)
+# uwuAOSP flags (must be set before inheriting common.mk)
+UWU_DEVICE_TYPE := phone
+UWU_SUPPORTS_TELEPHONY := true
+UWU_MAINTAINER := Zarathos30
+UWU_BUILDTYPE := RELEASE
+PRODUCT_NO_CAMERA := true
 TARGET_SCREEN_WIDTH := 1080
+
+# Inherit some common uwuAOSP
+$(call inherit-product, vendor/uwu/config/common.mk)
 
 # Inherit from onyx device
 $(call inherit-product, device/xiaomi/onyx/device.mk)
 
-PRODUCT_NAME := custom_onyx
+PRODUCT_NAME := uwu_onyx
 PRODUCT_DEVICE := onyx
 PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_BRAND := POCO
