@@ -4,6 +4,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+from os import path
+
 from extract_utils.fixups_blob import (
     BlobFixupCtx,
     File,
@@ -19,9 +21,12 @@ from extract_utils.main import (
     ExtractUtilsModule,
 )
 from extract_utils.tools import (
+    android_root,
     llvm_objdump_path,
 )
 from extract_utils.utils import (
+    Color,
+    color_print,
     run_cmd,
 )
 
@@ -454,6 +459,38 @@ module = ExtractUtilsModule(
     add_firmware_proprietary_file=True,
 )
 
+
+def convert_radio_to_uwu():
+    """Convert the generated radio files to uwu_prebuilt_image.
+
+    The LineageOS extract utils generate an Android.mk with add-radio-file
+    entries; converting it here keeps the vendor tree in uwu format after
+    every extraction or makefile regeneration.
+    """
+    uwu_cli = path.join(android_root, 'uwuCLI', 'uwu')
+    if not path.exists(uwu_cli):
+        color_print(
+            'uwuCLI not found, skipping radio conversion',
+            color=Color.YELLOW,
+        )
+        return
+
+    output = run_cmd(
+        [
+            uwu_cli,
+            'vendor',
+            'convert',
+            'radio',
+            '--product-file',
+            path.join(module.device_rel_path, f'uwu_{module.device}.mk'),
+            '--yes',
+            '--non-interactive',
+        ]
+    )
+    color_print(output.strip(), color=Color.GREEN)
+
+
 if __name__ == '__main__':
     utils = ExtractUtils.device(module)
     utils.run()
+    convert_radio_to_uwu()
