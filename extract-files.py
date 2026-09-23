@@ -437,6 +437,12 @@ blob_fixups: blob_fixups_user_type = {
 
     'vendor/lib64/vendor.libdpmframework.so': blob_fixup()
         .add_needed('libhidlbase_shim.so'),
+
+    (
+        'vendor/lib64/libproj_qmot_tracker.so',
+        'vendor/lib64/libproj_sot.so'
+    ): blob_fixup()
+        .add_needed('libc++_shared.so'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
