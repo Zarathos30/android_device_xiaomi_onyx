@@ -207,8 +207,8 @@ PRODUCT_PACKAGES += \
 
 # Health
 PRODUCT_PACKAGES += \
-    android.hardware.health-service.qti \
-    android.hardware.health-service.qti_recovery
+    android.hardware.health-service.xiaomi \
+    android.hardware.health-service.xiaomi_recovery
 
 # IPACM
 PRODUCT_PACKAGES += \
@@ -253,7 +253,7 @@ PRODUCT_COPY_FILES += \
 
 # IR
 PRODUCT_PACKAGES += \
-    android.hardware.ir-service.lineage
+    android.hardware.ir-service.xiaomi
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.consumerir.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/android.hardware.consumerir.xml
@@ -286,7 +286,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.light-service.onyx
 
-# Lineage Health
+# Charging control
 PRODUCT_PACKAGES += \
     vendor.lineage.health-service.default
 
