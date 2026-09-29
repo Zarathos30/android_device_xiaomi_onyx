@@ -296,9 +296,7 @@ $(call soong_config_set,lineage_health,charging_control_charging_disabled,1)
 $(call soong_config_set_bool,lineage_health,charging_control_supports_bypass,false)
 
 # Kernel
-ifeq ($(BOARD_USES_SOONG_KERNEL),true)
-PRODUCT_PACKAGES += kernel
-endif
+KERNEL_PREBUILT_DIR := $(LOCAL_PATH)-kernel
 
 PRODUCT_ENABLE_UFFD_GC := true
 

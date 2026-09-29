@@ -69,8 +69,8 @@ DEVICE_MANIFEST_FILE := \
     hardware/qcom-caf/sm8750/audio/primary-hal/configs/sun/manifest_audio_qti_services.xml
 
 # Kernel
-BOARD_USES_SOONG_KERNEL := true
-SOONG_KERNEL_MODULE := //device/xiaomi/onyx:kernel
+BOARD_USES_GENERIC_KERNEL_IMAGE := true
+TARGET_HAS_GENERIC_KERNEL_HEADERS := true
 TARGET_KERNEL_VERSION := 6.6
 
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
@@ -102,6 +102,23 @@ BOARD_BOOTCONFIG := \
     androidboot.load_modules_parallel=true \
     androidboot.hypervisor.protected_vm.supported=true \
     androidboot.vendor.qspa=true
+
+# Kernel modules
+first_stage_modules := $(strip $(shell sed 's/#.*$$//;/^$$/d' $(DEVICE_PATH)/modules/modules.list.msm.sun $(DEVICE_PATH)/modules/modules.list.first_stage))
+second_stage_modules := $(strip $(shell cat $(DEVICE_PATH)/modules/modules.list.second_stage))
+vendor_dlkm_modules := $(strip $(shell cat $(DEVICE_PATH)/modules/modules.list.vendor_dlkm))
+gki_modules := $(strip $(shell cat $(DEVICE_PATH)/modules/modules.list.gki))
+kunit_modules := $(strip $(shell cat $(DEVICE_PATH)/modules/modules.list.kunit))
+
+BOARD_SYSTEM_KERNEL_MODULES_LOAD := $(gki_modules)
+BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(DEVICE_PATH)/modules/modules.vendor_blocklist.msm.sun
+BOARD_VENDOR_KERNEL_MODULES_LOAD := $(second_stage_modules) $(vendor_dlkm_modules)
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES_BLOCKLIST_FILE := $(BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE)
+BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(first_stage_modules)
+BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(first_stage_modules) $(second_stage_modules)
+
+BOOT_KERNEL_MODULES := $(first_stage_modules) $(second_stage_modules)
+SYSTEM_KERNEL_MODULES := $(gki_modules) $(kunit_modules)
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 100663296
