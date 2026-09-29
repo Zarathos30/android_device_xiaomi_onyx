@@ -16,7 +16,7 @@
   <project path="device/xiaomi/onyx-miuicamera" name="Zarathos30/android_device_xiaomi_onyx-miuicamera" remote="github" revision="seventeen" />
 
   <!-- Prebuilt kernel (Image, dtbs, modules) -->
-  <project path="device/xiaomi/onyx-kernel" name="Zarathos30/android_device_xiaomi_onyx-kernel" remote="github" revision="calcite" clone-depth="1" />
+  <project path="device/xiaomi/onyx-kernel" name="Zarathos30/android_device_xiaomi_onyx-kernel-" remote="github" revision="calcite" clone-depth="1" />
 
   <!-- Hardware -->
   <project path="hardware/xiaomi" name="AOSPA/android_hardware_xiaomi" remote="github" revision="calcite" />
