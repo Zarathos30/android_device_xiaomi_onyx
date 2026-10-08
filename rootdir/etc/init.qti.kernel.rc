@@ -32,13 +32,6 @@
 import /vendor/etc/init/hw/init.qti.kernel.test.rc
 import /vendor/etc/init/hw/init.qti.kernel.target.rc
 
-service memory-init-boot /vendor/bin/sh /vendor/bin/init.kernel.init_boot-memory.sh
-    class core
-    user root
-    group root
-    disabled
-    oneshot
-
 service memory-post-boot /vendor/bin/sh /vendor/bin/init.kernel.post_boot-memory.sh
     class core
     user root
@@ -65,9 +58,6 @@ on early-init
     write /proc/sys/kernel/sched_boost 1
 
     write /proc/sys/kernel/firmware_config/force_sysfs_fallback 1
-
-on init
-    start memory-init-boot
 
 on post-fs
     # Create cgroup mount point for memory
@@ -109,9 +99,6 @@ on boot
     # update io-scheduler tunables
     write /sys/class/block/mmcblk0/queue/iosched/slice_idle 0
     write /sys/class/block/mmcblk1/queue/iosched/slice_idle 0
-
-    # Allow access to memory hotplug device attributes
-    chown system system /sys/kernel/mem-offline/anon_migrate
 
 on post-fs-data
     # Create directory used for dump collection
@@ -168,9 +155,6 @@ on property:sys.boot_completed=1
     start kernel-boot
     start kernel-post-boot
     start memory-post-boot
-
-on property:vendor.pasr.enabled=false
-    stop pasr-hal
 
 on charger
     start kernel-post-boot
