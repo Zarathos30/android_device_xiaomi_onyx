@@ -225,6 +225,7 @@ PRODUCT_PACKAGES += \
     init.target.rc
 
 PRODUCT_PACKAGES += \
+    init.camera.wmfix.sh \
     init.class_main.sh \
     init.kernel.post_boot-memory.sh \
     init.kernel.post_boot-tuna.sh \
